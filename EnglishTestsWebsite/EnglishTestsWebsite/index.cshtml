@@ -1,0 +1,35 @@
+﻿@{
+    string userName = null;
+    Layout = "~/Layouts/_StartLayout.cshtml";
+    Page.Title = "Main Page";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+
+    <main role="main" class="container"> 
+        <div class="starter-template" style="margin-top: 100px">
+            <h1>Проверьте свое знание английского</h1>
+
+            <p>Это быстрый бесплатный онлайн-тест. Он покажет, какой экзамен будет оптимальным для вас.</p>
+
+            <p>Нажмите 'Начать тест' и ответьте на все вопросы.</p>
+
+            <ul>
+                <li>Тест содержит 10 вопросов с несколькими вариантами ответа.</li>
+                <li>Ограничение по времени - 5 минут</li>
+                <li>В конце теста вы сможете увидеть правильные ответы.</li>
+            </ul>
+
+            <button type="button" class="btn btn-primary" onclick="location.href=''">Начать тест</button>
+        </div>
+    </main>
+
+    <script src="~/Scripts/jquery-3.0.0.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+</body>
+</html>

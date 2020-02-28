@@ -1,0 +1,12 @@
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\BLL\obj\Debug\BLL.csprojAssemblyReference.cache
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\BLL\bin\Debug\BLL.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\BLL\bin\Debug\BLL.pdb
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\BLL\bin\Debug\BLL.Interfaces.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\BLL\bin\Debug\Dao.Interfaces.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\BLL\bin\Debug\Entities.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\BLL\bin\Debug\BLL.Interfaces.pdb
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\BLL\bin\Debug\Dao.Interfaces.pdb
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\BLL\bin\Debug\Entities.pdb
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\BLL\obj\Debug\BLL.csproj.CopyComplete
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\BLL\obj\Debug\BLL.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\BLL\obj\Debug\BLL.pdb

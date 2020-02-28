@@ -1,0 +1,35 @@
+﻿@using Entities;
+@using Ioc;
+@{ 
+    Layout = "~/Layouts/_StartLayout.cshtml";
+    Page.Title = "Entry test";
+
+    var userLogic = DependencyResolver.UserLogic;
+    var testLogic = DependencyResolver.TestLogic;
+    var questionLogic = DependencyResolver.QuestionLogic;
+
+    
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="alert alert-info" role="alert" style="margin-top: 100px">
+        Оставшееся время: <p id="timer">600</p>
+    </div>
+
+    <div style="margin-top: 200px">
+        @foreach (var question in questionLogic.GetAllQuestions())
+        {
+            <div>@question.QuestionId</div>
+        }
+    </div>
+
+    <form>
+    </form>
+
+    <script src="~/MyScripts/timer.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Dao.Interfaces\bin\Debug\Dao.Interfaces.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Dao.Interfaces\bin\Debug\Dao.Interfaces.pdb
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Dao.Interfaces\bin\Debug\Entities.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Dao.Interfaces\bin\Debug\Entities.pdb
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Dao.Interfaces\obj\Debug\Dao.Interfaces.csprojAssemblyReference.cache
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Dao.Interfaces\obj\Debug\Dao.Interfaces.csproj.CopyComplete
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Dao.Interfaces\obj\Debug\Dao.Interfaces.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Dao.Interfaces\obj\Debug\Dao.Interfaces.pdb

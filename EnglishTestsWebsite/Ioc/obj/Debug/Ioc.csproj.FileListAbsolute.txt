@@ -1,0 +1,16 @@
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Ioc\obj\Debug\Ioc.csprojAssemblyReference.cache
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Ioc\bin\Debug\Ioc.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Ioc\bin\Debug\Ioc.pdb
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Ioc\bin\Debug\BLL.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Ioc\bin\Debug\BLL.Interfaces.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Ioc\bin\Debug\DAL.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Ioc\bin\Debug\Dao.Interfaces.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Ioc\bin\Debug\Entities.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Ioc\bin\Debug\BLL.Interfaces.pdb
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Ioc\bin\Debug\BLL.pdb
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Ioc\bin\Debug\DAL.pdb
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Ioc\bin\Debug\Dao.Interfaces.pdb
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Ioc\bin\Debug\Entities.pdb
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Ioc\obj\Debug\Ioc.csproj.CopyComplete
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Ioc\obj\Debug\Ioc.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Ioc\obj\Debug\Ioc.pdb

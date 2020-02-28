@@ -1,0 +1,5 @@
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Entities\bin\Debug\Entities.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Entities\bin\Debug\Entities.pdb
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Entities\obj\Debug\Entities.csprojAssemblyReference.cache
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Entities\obj\Debug\Entities.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Entities\obj\Debug\Entities.pdb
