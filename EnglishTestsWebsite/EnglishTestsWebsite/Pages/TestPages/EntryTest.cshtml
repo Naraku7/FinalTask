@@ -1,14 +1,16 @@
 ﻿@using Entities;
 @using Ioc;
-@{ 
+@{
     Layout = "~/Layouts/_StartLayout.cshtml";
     Page.Title = "Entry test";
 
     var userLogic = DependencyResolver.UserLogic;
     var testLogic = DependencyResolver.TestLogic;
     var questionLogic = DependencyResolver.QuestionLogic;
+    int counter = 1;
+    string answerText = null;
 
-    
+
 }
 <!DOCTYPE html>
 <html>
@@ -20,15 +22,28 @@
         Оставшееся время: <p id="timer">600</p>
     </div>
 
-    <div style="margin-top: 200px">
-        @foreach (var question in questionLogic.GetAllQuestions())
-        {
-            <div>@question.QuestionId</div>
-        }
-    </div>
+    <form style="margin-top: 100px">
+        <fieldset>
+            <legend>For the questions below, please choose the best option to complete the sentence or conversation.</legend>
 
-    <form>
+            @foreach (var question in testLogic.GetTestById(1).Questions)
+            {
+                <p>@counter. @question.Text</p>
+                counter++;
+
+
+                <ul>
+                    @foreach (var answer in question.Answers)
+                    {
+                    <li><input type="radio" name=@question.Text value=@answerText />@answer</li>
+                    }
+                </ul>    
+            }
+
+
+        </fieldset>
     </form>
+
 
     <script src="~/MyScripts/timer.js"></script>
 </body>

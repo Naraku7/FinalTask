@@ -16,7 +16,48 @@ namespace DAL
 
         public int AddUser(User user)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "dbo.AddUser";
+
+                var usernameParameter = new SqlParameter()
+                {
+                    DbType = DbType.String,
+                    ParameterName = "@Username",
+                    Value = user.Username,
+                    Direction = ParameterDirection.Input
+                };
+
+                command.Parameters.Add(usernameParameter);
+
+                var passwordParameter = new SqlParameter()
+                {
+                    DbType = DbType.String,
+                    ParameterName = "@Password",
+                    Value = user.Password,
+                    Direction = ParameterDirection.Input
+                };
+
+                command.Parameters.Add(passwordParameter);
+
+                var idParameter = new SqlParameter()
+                {
+                    DbType = DbType.Int32,
+                    ParameterName = "@Id",
+                    Value = user.UserId,
+                    Direction = ParameterDirection.Output
+                };
+
+                command.Parameters.Add(idParameter);
+
+                connection.Open();
+
+                command.ExecuteNonQuery();
+
+                return (int)idParameter.Value;
+            }      
         }
 
         public void EditUser(int id, string username, string password, List<Test> passedTests)

@@ -32,18 +32,38 @@ namespace DAL
         public IEnumerable<Test> GetAllTests()
         {
             var tests = new List<Test>();
+            var test = new Test();
+            var question = new Question();
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 var command = connection.CreateCommand();
                 command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT [TestId], [QuestionId] FROM [EnglishTestsWeb].[dbo].[Tests_Questions]";
+                command.CommandText = "SELECT Tests_Questions.TestId, Tests_Questions.QuestionId, " +
+                    "Questions.Text AS QuestionText,  Answers.AnswerId, Answers.Text AS AnswerText  " +
+                    "FROM Tests_Questions " +
+                    "JOIN Questions_Answers ON Questions_Answers.QuestionId = Tests_Questions.QuestionId " +
+                    "JOIN Questions ON Questions_Answers.QuestionId = Questions.QuestionId " +
+                    "JOIN Answers ON Questions_Answers.AnswerId = Answers.AnswerId";
 
                 connection.Open();
 
                 var reader = command.ExecuteReader();
 
-                
+                while (reader.Read())
+                {
+                    test = new Test()
+                    {
+                        TestId = (int)reader["TestId"]
+                    };
+
+                    question = new Question((int)reader["QuestionId"], (string)reader["QuestionText"]);
+                    question.Answers.Add((string)reader["AnswerText"]);
+
+                    test.Questions.Add(question);
+
+                    tests.Add(test);
+                }
             }
 
             return tests;
@@ -51,7 +71,57 @@ namespace DAL
 
         public Test GetTestById(int id)
         {
-            throw new NotImplementedException();
+            var test = new Test();
+            test.TestId = id;
+            var question = new Question();
+            int index = 0;
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "SELECT Tests_Questions.TestId, Tests_Questions.QuestionId, Questions.Text AS QuestionText, Answers.AnswerId, Answers.Text AS AnswerText " +
+                    "FROM Tests_Questions " +
+                    "JOIN Questions_Answers ON Questions_Answers.QuestionId = Tests_Questions.QuestionId " +
+                    "JOIN Questions ON Questions_Answers.QuestionId = Questions.QuestionId " +
+                    "JOIN Answers ON Questions_Answers.AnswerId = Answers.AnswerId " +
+                    "WHERE TestId = @TestId";
+                command.Parameters.Add("@TestId", SqlDbType.Int);
+                command.Parameters["@TestId"].Value = id;
+
+                connection.Open();
+
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    question = new Question((int)reader["QuestionId"], (string)reader["QuestionText"]);
+
+                    index = test.Questions.Count() - 1;
+
+                    // We need to have a few answers in one question
+                    if (index >=0)
+                    {
+                        if (question.QuestionId == test.Questions[index].QuestionId)
+                        {
+                            test.Questions[index].Answers.Add((string)reader["AnswerText"]);
+                        }
+                        else
+                        {
+                            question.Answers.Add((string)reader["AnswerText"]);
+                            test.Questions.Add(question);
+                        }
+                    }
+                    else
+                    {
+                        question.Answers.Add((string)reader["AnswerText"]);
+                        test.Questions.Add(question);
+                    }
+                       
+                    
+                }
+            }
+            return test;
         }
 
         public void RemoveQuestionFromTest(int testId, int questId)

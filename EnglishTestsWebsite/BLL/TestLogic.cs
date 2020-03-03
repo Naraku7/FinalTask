@@ -35,17 +35,17 @@ namespace BLL
 
         public IEnumerable<Test> GetAllTests()
         {
-            throw new NotImplementedException();
+            return _testDao.GetAllTests();
         }
 
         public Test GetTestById(int id)
         {
-            throw new NotImplementedException();
+            return _testDao.GetTestById(id);
         }
 
         public void RemoveQuestionFromTest(int testId, int questId)
         {
-            throw new NotImplementedException();
+            _testDao.RemoveQuestionFromTest(testId, questId);
         }
 
         public void RemoveTest(int id)

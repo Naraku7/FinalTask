@@ -38,6 +38,11 @@ namespace BLL
             return _questionDao.GetAllQuestions();
         }
 
+        public IEnumerable<Question> GetAllQuestionsFromTest(int testId)
+        {
+            return _questionDao.GetAllQuestionsFromTest(testId);
+        }
+
         public Question GetQuestionById(int id)
         {
             throw new NotImplementedException();

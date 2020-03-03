@@ -11,6 +11,7 @@ namespace Dao.Interfaces
     {
         int AddQuestion(Question question);
         IEnumerable<Question> GetAllQuestions();
+        IEnumerable<Question> GetAllQuestionsFromTest(int testId);
         Question GetQuestionById(int id);
         void RemoveQuestion(int id);
         void EditQuestion(string text, string correctAnswer);

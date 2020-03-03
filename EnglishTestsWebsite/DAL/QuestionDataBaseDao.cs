@@ -32,16 +32,17 @@ namespace DAL
         public IEnumerable<Question> GetAllQuestions()
         {
             var questions = new List<Question>();
+            var question = new Question();
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 var command = connection.CreateCommand();
                 command.CommandType = CommandType.Text;
 
-                command.CommandText = "SELECT Questions_Answers.QuestionId, " +
-                    "Questions.Text AS QuestionText, Questions_Answers.AnswerId, " +
-                    "Answers.Text AS AnswerText " +
-                    "FROM Questions_Answers, Answers, Questions";
+                command.CommandText = "SELECT Questions_Answers.QuestionId, Questions.Text AS QuestionText, " +
+                    "Answers.AnswerId, Answers.Text AS AnswerText FROM Questions_Answers " +
+                    "JOIN Questions ON Questions_Answers.QuestionId = Questions.QuestionId " +
+                    "JOIN Answers ON Questions_Answers.AnswerId = Answers.AnswerId";
 
                 connection.Open();
 
@@ -49,21 +50,19 @@ namespace DAL
 
                 while (reader.Read())
                 {
-                    questions.Add(new Question
-                    {
-                        QuestionId = (int) reader["QuestionId"],
-                        Answers = new List<string>(),
-                        Text = (string) reader["QuestionText"]
-                    });
-                }
+                    question = new Question((int)reader["QuestionId"], (string)reader["QuestionText"]);
+                    question.Answers.Add((string)reader["AnswerText"]);
 
-                //for(int i = 0; i < questions.Count(); i++)
-                //{
-                //    questions[i].Answers.Add((string)reader["AnswerText"]); //
-                //}
+                    questions.Add(question);
+                }   
             }
 
             return questions;
+        }
+
+        public IEnumerable<Question> GetAllQuestionsFromTest(int testId)
+        {
+            throw new NotImplementedException();
         }
 
         public Question GetQuestionById(int id)
