@@ -79,3 +79,5 @@ E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\EnglishTestsWeb
 E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\EnglishTestsWebsite\bin\Dao.Interfaces.pdb
 E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\EnglishTestsWebsite\bin\DAL.pdb
 E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\EnglishTestsWebsite\bin\BLL.pdb
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\EnglishTestsWebsite\bin\Newtonsoft.Json.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\EnglishTestsWebsite\bin\Newtonsoft.Json.xml

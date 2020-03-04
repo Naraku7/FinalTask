@@ -60,9 +60,48 @@ namespace DAL
             }      
         }
 
-        public void EditUser(int id, string username, string password, List<Test> passedTests)
+        public void EditUser(int id, string username, string password)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "dbo.EditUser";
+
+                var idParameter = new SqlParameter()
+                {
+                    DbType = DbType.Int32,
+                    ParameterName = "@Id",
+                    Value = id,
+                    Direction = ParameterDirection.Input
+                };
+
+                command.Parameters.Add(idParameter);
+
+                var usernameParameter = new SqlParameter()
+                {
+                    DbType = DbType.String,
+                    ParameterName = "@Username",
+                    Value = username,
+                    Direction = ParameterDirection.Input
+                };
+
+                command.Parameters.Add(usernameParameter);
+
+                var passwordParameter = new SqlParameter()
+                {
+                    DbType = DbType.String,
+                    ParameterName = "@Password",
+                    Value = password,
+                    Direction = ParameterDirection.Input
+                };
+
+                command.Parameters.Add(passwordParameter);                
+
+                connection.Open();
+
+                command.ExecuteNonQuery();
+            }
         }
 
         public IEnumerable<User> GetAllUsers()
@@ -95,12 +134,54 @@ namespace DAL
 
         public User GetUserById(int id)
         {
-            throw new NotImplementedException();
+            var user = new User();
+            user.UserId = id;
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "SELECT Users.UserId, Users.Username, Users.Password FROM Users WHERE UserId = @Id";
+
+                command.Parameters.Add("@Id", SqlDbType.Int);
+                command.Parameters["@Id"].Value = id;
+
+                connection.Open();
+
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    user.Username = (string)reader["Username"];
+                    user.Password = (string)reader["Password"];
+                }
+            }
+
+            return user;
         }
 
         public void RemoveUser(int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "dbo.RemoveUser";
+
+                var idParameter = new SqlParameter()
+                {
+                    DbType = DbType.Int32,
+                    ParameterName = "@Id",
+                    Value = id,
+                    Direction = ParameterDirection.Input
+                };
+
+                command.Parameters.Add(idParameter);
+
+                connection.Open();
+
+                command.ExecuteNonQuery();
+            }
         }
     }
 }

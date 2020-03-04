@@ -13,6 +13,6 @@ namespace Dao.Interfaces
         IEnumerable<User> GetAllUsers();
         User GetUserById(int id);
         void RemoveUser(int id);
-        void EditUser(int id, string username, string password, List<Test> passedTests);
+        void EditUser(int id, string username, string password);
     }
 }

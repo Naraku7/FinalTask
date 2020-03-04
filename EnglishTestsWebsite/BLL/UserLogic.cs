@@ -23,9 +23,9 @@ namespace BLL
             return _userDao.AddUser(user);
         }
 
-        public void EditUser(int id, string username, string password, List<Test> passedTests)
+        public void EditUser(int id, string username, string password)
         {
-            _userDao.EditUser(id, username, password, passedTests);
+            _userDao.EditUser(id, username, password);
         }
 
         public IEnumerable<User> GetAllUsers()

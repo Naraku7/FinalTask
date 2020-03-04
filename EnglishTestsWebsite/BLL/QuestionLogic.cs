@@ -18,7 +18,7 @@ namespace BLL
             _questionDao = questionDao;
         }
 
-        public string AddAnswerToQuestion(int AnswerId, int QuestId)
+        public void AddAnswerToQuestion(int AnswerId, int QuestId)
         {
             throw new NotImplementedException();
         }

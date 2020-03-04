@@ -15,7 +15,7 @@ namespace BLL.Interfaces
         Question GetQuestionById(int id);
         void RemoveQuestion(int id);
         void EditQuestion(string text, string correctAnswer);
-        string AddAnswerToQuestion(int AnswerId, int QuestId);
+        void AddAnswerToQuestion(int AnswerId, int QuestId);
         void RemoveAnswerFromQuestion(int AnswerId, int QuestId);
     }
 }

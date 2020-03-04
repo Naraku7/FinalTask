@@ -7,10 +7,10 @@
     var userLogic = DependencyResolver.UserLogic;
     var testLogic = DependencyResolver.TestLogic;
     var questionLogic = DependencyResolver.QuestionLogic;
-    int counter = 1;
-    string answerText = null;
+    int questionCounter = 1;
+    int answerNumber = 1;
 
-
+    @Html
 }
 <!DOCTYPE html>
 <html>
@@ -21,30 +21,63 @@
     <div class="alert alert-info" role="alert" style="margin-top: 100px">
         Оставшееся время: <p id="timer">600</p>
     </div>
-
-    <form style="margin-top: 100px">
+    <form action="~/Pages/TestPages/EntryTest.cshtml" method="post" style="margin-top: 100px">
         <fieldset>
             <legend>For the questions below, please choose the best option to complete the sentence or conversation.</legend>
 
             @foreach (var question in testLogic.GetTestById(1).Questions)
             {
-                <p>@counter. @question.Text</p>
-                counter++;
+                <p>@questionCounter. @question.Text</p>
+                questionCounter++;
 
 
                 <ul>
                     @foreach (var answer in question.Answers)
                     {
-                    <li><input type="radio" name=@question.Text value=@answerText />@answer</li>
+                        <li><input class="answer" type="radio" name=@question.Text.Replace(" ","") value=@answerNumber />@answer</li>
+                        answerNumber++;
                     }
-                </ul>    
+                </ul>
             }
-
-
         </fieldset>
+
+        <button type="submit" class="btn btn-primary" style="width:200px" id="confirm">Confirm</button>
+        <br />
+        <a href="~/Pages/TestResults.cshtml">See results</a>
     </form>
 
+    <div id="result">
+
+    </div>
 
     <script src="~/MyScripts/timer.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+
+    <script>
+        $("#confirm").click(function () {
+            let answers = document.getElementsByClassName("answer"); //выбирать нужно только checked!
+
+            //for (let i = 0; i < answers.length; i++) {
+            //    if (answers[i].checked) {
+            //        checkedAnswers.push(answers[i]);
+            //    }
+            //}
+
+            //let answerText = Array.from(checkedAnswers).map(a => a.innerText); //возможно, не работает
+
+            let answerText = Array.from(answers).map(a => a.innerText);
+
+            //$.post('/Pages/TestResults.cshtml', { answers: JSON.stringify(answerText) });
+
+            $.ajax(
+                {
+                    url: '/Pages/TestResults.cshtml',
+                    method: "POST",
+                    data: { answers: JSON.stringify(answerText) },
+                    dataType: "json",
+                    success: () => location.assign('/Pages/TestResults.cshtml')
+                });
+        })
+    </script>
 </body>
 </html>

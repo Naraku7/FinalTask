@@ -14,14 +14,74 @@ namespace DAL
     {
         private string _connectionString = @"Data Source=DESKTOP-I83RQ52\SQLEXPRESS;Initial Catalog=EnglishTestsWeb;Integrated Security=True";
 
-        public string AddAnswerToQuestion(int AnswerId, int QuestId)
+        public void AddAnswerToQuestion(int AnswerId, int QuestId)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "dbo.AddAnswerToQuestion";
+
+                var answerIdParameter = new SqlParameter()
+                {
+                    DbType = DbType.Int32,
+                    ParameterName = "@AnswerId",
+                    Value = AnswerId,
+                    Direction = ParameterDirection.Input
+                };
+
+                command.Parameters.Add(answerIdParameter);
+
+                var questionIdParameter = new SqlParameter()
+                {
+                    DbType = DbType.Int32,
+                    ParameterName = "@QuestionId",
+                    Value = QuestId,
+                    Direction = ParameterDirection.Input
+                };
+
+                command.Parameters.Add(questionIdParameter);
+
+                connection.Open();
+
+                command.ExecuteNonQuery();
+            }
         }
 
         public int AddQuestion(Question question)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "dbo.AddQuestion";
+
+                var idParameter = new SqlParameter()
+                {
+                    DbType = DbType.Int32,
+                    ParameterName = "@Id",
+                    Value = question.QuestionId,
+                    Direction = ParameterDirection.Output
+                };
+
+                command.Parameters.Add(idParameter);
+
+                var textParameter = new SqlParameter()
+                {
+                    DbType = DbType.String,
+                    ParameterName = "@Text",
+                    Value = question.Text,
+                    Direction = ParameterDirection.Input
+                };
+
+                command.Parameters.Add(textParameter);
+
+                connection.Open();
+
+                command.ExecuteNonQuery();
+
+                return (int)idParameter.Value; 
+            }
         }
 
         public void EditQuestion(string text, string correctAnswer)
