@@ -1,0 +1,5 @@
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\RoleProvider\bin\Debug\RoleProvider.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\RoleProvider\bin\Debug\RoleProvider.pdb
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\RoleProvider\obj\Debug\RoleProviderProject.csprojAssemblyReference.cache
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\RoleProvider\obj\Debug\RoleProvider.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\RoleProvider\obj\Debug\RoleProvider.pdb

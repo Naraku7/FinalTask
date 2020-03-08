@@ -97,7 +97,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="MyScripts\timer.js" />
-    <Content Include="Pages\TestPages\P.html" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -125,6 +124,9 @@
     <Content Include="Pages\TestPages\EntryTest.cshtml" />
     <Content Include="Pages\login.cshtml" />
     <Content Include="Pages\TestResults.cshtml" />
+    <Content Include="Pages\Registration.cshtml" />
+    <Content Include="Pages\logout.cshtml" />
+    <Content Include="Pages\Statistics.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -215,7 +217,7 @@
     <Content Include="index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\MyRoleProvider.cs" />
+    <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

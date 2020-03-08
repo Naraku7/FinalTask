@@ -11,7 +11,7 @@ namespace Entities
         public string Text { get; set; }
         public int QuestionId { get; set; }
         public List<string> Answers { get; set; }
-        public string CorrectAnswer { get; set; }
+        public int CorrectAnswer { get; set; }
 
         public Question(int id, string text)
         {

@@ -14,7 +14,7 @@ namespace DAL
     {
         private string _connectionString = @"Data Source=DESKTOP-I83RQ52\SQLEXPRESS;Initial Catalog=EnglishTestsWeb;Integrated Security=True";
 
-        public void AddAnswerToQuestion(int AnswerId, int QuestId)
+        public void AddAnswerToQuestion(int answerId, int questId)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -26,7 +26,7 @@ namespace DAL
                 {
                     DbType = DbType.Int32,
                     ParameterName = "@AnswerId",
-                    Value = AnswerId,
+                    Value = answerId,
                     Direction = ParameterDirection.Input
                 };
 
@@ -36,7 +36,7 @@ namespace DAL
                 {
                     DbType = DbType.Int32,
                     ParameterName = "@QuestionId",
-                    Value = QuestId,
+                    Value = questId,
                     Direction = ParameterDirection.Input
                 };
 
@@ -76,6 +76,16 @@ namespace DAL
 
                 command.Parameters.Add(textParameter);
 
+                var CorrectAnswerParameter = new SqlParameter()
+                {
+                    DbType = DbType.Int32,
+                    ParameterName = "@CorrectAnswer",
+                    Value = question.CorrectAnswer,
+                    Direction = ParameterDirection.Input
+                };
+
+                command.Parameters.Add(CorrectAnswerParameter);
+
                 connection.Open();
 
                 command.ExecuteNonQuery();
@@ -84,9 +94,48 @@ namespace DAL
             }
         }
 
-        public void EditQuestion(string text, string correctAnswer)
+        public void EditQuestion(int id, string text, int correctAnswer)
         {
-            throw new NotImplementedException();
+            using(SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "dbo.EditQuestion";
+
+                var idParameter = new SqlParameter()
+                {
+                    DbType = DbType.Int32,
+                    ParameterName = "@Id",
+                    Value = id,
+                    Direction = ParameterDirection.Input
+                };
+
+                command.Parameters.Add(idParameter);
+
+                var textParameter = new SqlParameter()
+                {
+                    DbType = DbType.String,
+                    ParameterName = "@Text",
+                    Value = text,
+                    Direction = ParameterDirection.Input
+                };
+
+                command.Parameters.Add(textParameter);
+
+                var correctAnswerParameter = new SqlParameter()
+                {
+                    DbType = DbType.Int32,
+                    ParameterName = "@CorrectAnswer",
+                    Value = correctAnswer,
+                    Direction = ParameterDirection.Input
+                };
+
+                command.Parameters.Add(correctAnswerParameter);
+
+                connection.Open();
+
+                command.ExecuteNonQuery();
+            }
         }
 
         public IEnumerable<Question> GetAllQuestions()
@@ -122,22 +171,127 @@ namespace DAL
 
         public IEnumerable<Question> GetAllQuestionsFromTest(int testId)
         {
-            throw new NotImplementedException();
+            Question question = new Question();
+            List<Question> questions = new List<Question>();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "SELECT Questions.QuestionId, Questions.CorrectAnswer, Questions.Text FROM Questions  " +
+                    "JOIN Tests_Questions ON Tests_Questions.QuestionId = Questions.QuestionId " +
+                    "WHERE Tests_Questions.TestId = @Id";
+
+                command.Parameters.Add("@Id", SqlDbType.Int);
+                command.Parameters["@Id"].Value = testId;
+
+                connection.Open();
+
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    question.QuestionId = (int)reader["QuestionId"];
+                    question.Text = (string)reader["Text"];
+                    question.CorrectAnswer = (int)reader["CorrectAnswer"];
+
+                    questions.Add(question);
+                }
+            }
+
+            return questions;
         }
 
         public Question GetQuestionById(int id)
         {
-            throw new NotImplementedException();
+            var question = new Question();
+            question.QuestionId = id;
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "SELECT Questions.QuestionId, Questions.Text AS QuestionText, Questions.CorrectAnswer, Answers.Text AS AnswerText " +
+                    "FROM Questions " +
+                    "JOIN Questions_Answers ON Questions_Answers.QuestionId = Questions.QuestionId " +
+                    "JOIN Answers ON Answers.AnswerId = Questions_Answers.AnswerId " +
+                    "WHERE Questions.QuestionId = @Id";
+
+                command.Parameters.Add("@Id", SqlDbType.Int);
+                command.Parameters["@Id"].Value = id;
+
+                connection.Open();
+
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    question.Text = (string)reader["QuestionText"];
+                    question.CorrectAnswer = (int)reader["CorrectAnswer"];
+
+                    question.Answers.Add((string)reader["AnswerText"]);
+                }
+            }
+
+            return question;
         }
 
-        public void RemoveAnswerFromQuestion(int AnswerId, int QuestId)
+        public void RemoveAnswerFromQuestion(int answerId, int questId)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "dbo.RemoveAnswerFromQuestion";
+
+                var AnswerIdParameter = new SqlParameter()
+                {
+                    DbType = DbType.Int32,
+                    ParameterName = "@AnswerId",
+                    Value = answerId,
+                    Direction = ParameterDirection.Input
+                };
+
+                command.Parameters.Add(AnswerIdParameter);
+
+                var QuestIdParameter = new SqlParameter()
+                {
+                    DbType = DbType.Int32,
+                    ParameterName = "@QuestId",
+                    Value = questId,
+                    Direction = ParameterDirection.Input
+                };
+
+                command.Parameters.Add(QuestIdParameter);
+
+                connection.Open();
+
+                command.ExecuteNonQuery();
+            }
         }
 
         public void RemoveQuestion(int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "dbo.RemoveQuestion";
+
+                var idParameter = new SqlParameter()
+                {
+                    DbType = DbType.Int32,
+                    ParameterName = "@Id",
+                    Value = id,
+                    Direction = ParameterDirection.Input
+                };
+
+                command.Parameters.Add(idParameter);
+
+                connection.Open();
+
+                command.ExecuteNonQuery();
+            }
         }
     }
 }

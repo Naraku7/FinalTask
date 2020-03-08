@@ -8,3 +8,5 @@ E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\DAL\bin\Debug\E
 E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\DAL\obj\Debug\DAL.csproj.CopyComplete
 E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\DAL\obj\Debug\DAL.dll
 E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\DAL\obj\Debug\DAL.pdb
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\DAL\bin\Debug\RoleProvider.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\DAL\bin\Debug\RoleProvider.pdb

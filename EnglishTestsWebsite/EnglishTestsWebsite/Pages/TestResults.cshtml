@@ -5,30 +5,23 @@
     Layout = "~/Layouts/_StartLayout.cshtml";
     Page.Title = "Result";
 
-    string answers = "str";
+    var testLogic = DependencyResolver.TestLogic;
+    var questions = testLogic.GetTestById(1).Questions;
+    int[] correctAnswers = new int[questions.Count()];
 
-    string name = null;
-    string password = null;
-    int id = 0;
-    var userLogic = DependencyResolver.UserLogic;
-
-    var user = userLogic.GetUserById(2);
-
-    if (IsPost)
-    {
-        name = Request["username"];
-        password = Request["pass"];
-        id = int.Parse(Request["id"]);
-
-        id = userLogic.AddUser(new Entities.User(name, password));       
-    }
-
+    string answers = null;
+    int score = 0;
 
     if (IsAjax)
     {
         answers = Request["answers"];
-
-        var answersArray = JsonConvert.DeserializeObject<string[]>(answers);
+            for (int i = 0; i < correctAnswers.Length; i++)
+            {
+                if (correctAnswers[i] == Char.GetNumericValue(answers[i]))
+                {
+                    score++;
+                }
+            }
     }
 
 }
@@ -40,25 +33,14 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
+    <div style="margin-top: 100px">
+        Result:
 
-    <form method="post" action="~/Pages/TestResults.cshtml" style="margin-top: 100px">
-        <p>@user.UserId</p>
-        <p>@user.Username</p>
-        <p>@user.Password</p>
+        @score
 
-        <button type="submit" class="btn btn-primary" style="width:200px" id="confirm">Confirm</button>
-    </form>
-
-    @*<form method="post" action="~/Pages/TestResults.cshtml" style="margin-top: 70px">
-        <input type="text" value=@name placeholder="name" name="username" />
-        <input type="text" value=@password placeholder="password" name="pass" />
-        <p>@id</p>
-
-        <button type="submit" class="btn btn-primary" style="width:200px" id="confirm">Confirm</button>
-    </form>*@
+    </div>
 
 
-    <p style="margin-top: 100px"></p>
     <script src="~/MyScripts/timer.js"></script>
 </body>
 </html>

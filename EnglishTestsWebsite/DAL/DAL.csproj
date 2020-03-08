@@ -32,7 +32,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,6 +56,10 @@
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{3ECA5BD1-2D0C-481D-94C6-4EFB72BE0358}</Project>
       <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RoleProvider\RoleProviderProject.csproj">
+      <Project>{744bb736-4276-43f9-ae3e-a5f1f6bb5679}</Project>
+      <Name>RoleProviderProject</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

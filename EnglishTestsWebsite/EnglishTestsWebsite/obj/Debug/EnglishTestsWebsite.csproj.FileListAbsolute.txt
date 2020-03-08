@@ -81,3 +81,5 @@ E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\EnglishTestsWeb
 E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\EnglishTestsWebsite\bin\BLL.pdb
 E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\EnglishTestsWebsite\bin\Newtonsoft.Json.dll
 E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\EnglishTestsWebsite\bin\Newtonsoft.Json.xml
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\EnglishTestsWebsite\bin\RoleProvider.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\EnglishTestsWebsite\bin\RoleProvider.pdb

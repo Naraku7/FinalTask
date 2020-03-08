@@ -18,19 +18,19 @@ namespace BLL
             _testDao = testDao;
         }
 
-        public Question AddQuestionToTest(int questId, int testId)
+        public void AddQuestionToTest(int questId, int testId)
         {
-            throw new NotImplementedException();
+            _testDao.AddQuestionToTest(questId, testId);
         }
 
         public int AddTest(Test test)
         {
-            throw new NotImplementedException();
+            return _testDao.AddTest(test);
         }
 
         public void ChangeSubject(int testId, string newSubject)
         {
-            throw new NotImplementedException();
+            _testDao.ChangeSubject(testId, newSubject);
         }
 
         public IEnumerable<Test> GetAllTests()
@@ -50,7 +50,7 @@ namespace BLL
 
         public void RemoveTest(int id)
         {
-            throw new NotImplementedException();
+            _testDao.RemoveTest(id);
         }
     }
 }

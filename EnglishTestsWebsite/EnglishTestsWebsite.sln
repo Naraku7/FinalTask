@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dao.Interfaces", "Dao.Inter
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ioc", "Ioc\Ioc.csproj", "{C9FF8545-E758-4460-A272-BF430A33EE31}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoleProviderProject", "RoleProvider\RoleProviderProject.csproj", "{744BB736-4276-43F9-AE3E-A5F1F6BB5679}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{C9FF8545-E758-4460-A272-BF430A33EE31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9FF8545-E758-4460-A272-BF430A33EE31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9FF8545-E758-4460-A272-BF430A33EE31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{744BB736-4276-43F9-AE3E-A5F1F6BB5679}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{744BB736-4276-43F9-AE3E-A5F1F6BB5679}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{744BB736-4276-43F9-AE3E-A5F1F6BB5679}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{744BB736-4276-43F9-AE3E-A5F1F6BB5679}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,7 @@
 ﻿@using Entities;
 @using Ioc;
+@using Newtonsoft.Json;
+@using EnglishTestsWebsite.Models;
 @{
     Layout = "~/Layouts/_StartLayout.cshtml";
     Page.Title = "Entry test";
@@ -10,8 +12,41 @@
     int questionCounter = 1;
     int answerNumber = 1;
 
-    @Html
+    var questions = testLogic.GetTestById(1).Questions;
+    int[] correctAnswers = new int[questions.Count()];
+    string answers = null;
+
+    int score = 0;
+
+    LiteralControl myLitCtrl = new LiteralControl(score.ToString());
+
+    for (int i = 0; i < questions.Count(); i++)
+    {
+        correctAnswers[i] = questions[i].CorrectAnswer;
+    }
+
+    if (IsAjax)
+    {
+        answers = Request["answers"];
+        for (int i = 0; i < correctAnswers.Length; i++)
+        {
+            // I add 48 according to ASCII
+            if (Convert.ToChar(correctAnswers[i] + 48) == answers[i])
+            {
+                score++;
+            }
+        }
+
+
+        int id = userLogic.GetUserByNameAndPass(UserInfo.Username, UserInfo.Password).UserId;
+        userLogic.AddScoreOfTest(id, 1, score);
+
+//Response.Write(score.ToString());s
+        myLitCtrl.Text = score.ToString();
+
+    }
 }
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,63 +56,87 @@
     <div class="alert alert-info" role="alert" style="margin-top: 100px">
         Оставшееся время: <p id="timer">600</p>
     </div>
-    <form action="~/Pages/TestPages/EntryTest.cshtml" method="post" style="margin-top: 100px">
+    <form action="~/Pages/TestPages/EntryTest.cshtml" method="post" style="margin-top: 100px" id="test">
         <fieldset>
             <legend>For the questions below, please choose the best option to complete the sentence or conversation.</legend>
 
-            @foreach (var question in testLogic.GetTestById(1).Questions)
+            @foreach (var question in questions)
             {
                 <p>@questionCounter. @question.Text</p>
                 questionCounter++;
-
+                answerNumber = 1;
 
                 <ul>
                     @foreach (var answer in question.Answers)
                     {
                         <li><input class="answer" type="radio" name=@question.Text.Replace(" ","") value=@answerNumber />@answer</li>
+
                         answerNumber++;
                     }
                 </ul>
             }
         </fieldset>
 
-        <button type="submit" class="btn btn-primary" style="width:200px" id="confirm">Confirm</button>
+        <button type="submit" class="btn btn-primary" style="width:200px" id="confirm" onclick="check()">Confirm</button>
         <br />
-        <a href="~/Pages/TestResults.cshtml">See results</a>
     </form>
 
-    <div id="result">
+    <div>
+        Result:
+
+        @myLitCtrl.Text
 
     </div>
+
+    @Html.Raw("<span>" + score.ToString() + "</span>")
 
     <script src="~/MyScripts/timer.js"></script>
     <script src="~/Scripts/jquery-3.4.1.js"></script>
 
     <script>
-        $("#confirm").click(function () {
-            let answers = document.getElementsByClassName("answer"); //выбирать нужно только checked!
-
-            //for (let i = 0; i < answers.length; i++) {
-            //    if (answers[i].checked) {
-            //        checkedAnswers.push(answers[i]);
-            //    }
-            //}
-
-            //let answerText = Array.from(checkedAnswers).map(a => a.innerText); //возможно, не работает
-
-            let answerText = Array.from(answers).map(a => a.innerText);
-
-            //$.post('/Pages/TestResults.cshtml', { answers: JSON.stringify(answerText) });
-
-            $.ajax(
-                {
-                    url: '/Pages/TestResults.cshtml',
-                    method: "POST",
-                    data: { answers: JSON.stringify(answerText) },
-                    dataType: "json",
-                    success: () => location.assign('/Pages/TestResults.cshtml')
+        $(document).ready(function () {
+            $('#confirm').click(function () {
+                var check = true;
+                $("input:radio").each(function () {
+                    var name = $(this).attr("name");
+                    if ($("input:radio[name=" + name + "]:checked").length == 0) {
+                        check = false;
+                    }
                 });
-        })
+
+                if (check) {
+                    alert('One radio in each group is checked.');
+                } else {
+                    alert('Please select one option in each question.');
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function check() {
+            let answers = document.getElementsByClassName("answer");
+
+            let checkedAnswers = [];
+
+            for (let i = 0; i < answers.length; i++) {
+                if (answers[i].checked) {
+                    checkedAnswers.push(answers[i]);
+                }
+            }
+
+            let answersNumbers = Array.from(checkedAnswers).map(a => a.value);
+
+            let strAnswers = '';
+
+            for (let i = 0; i < answersNumbers.length; i++) {
+                strAnswers += answersNumbers[i];
+            }
+
+            $.post('/Pages/TestPages/EntryTest.cshtml', { answers: strAnswers });
+
+            //$.post('/Pages/TestResults.cshtml', { answers: JSON.stringify(answersNumbers) });
+        }
     </script>
 </body>
 </html>

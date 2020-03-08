@@ -14,7 +14,7 @@ namespace BLL.Interfaces
         IEnumerable<Question> GetAllQuestionsFromTest(int testId);
         Question GetQuestionById(int id);
         void RemoveQuestion(int id);
-        void EditQuestion(string text, string correctAnswer);
+        void EditQuestion(int id, string text, int correctAnswer);
         void AddAnswerToQuestion(int AnswerId, int QuestId);
         void RemoveAnswerFromQuestion(int AnswerId, int QuestId);
     }

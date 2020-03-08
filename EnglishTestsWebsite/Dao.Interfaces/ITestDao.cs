@@ -14,7 +14,7 @@ namespace Dao.Interfaces
         Test GetTestById(int id);
         void RemoveTest(int id);
         void RemoveQuestionFromTest(int testId, int questId);
-        Question AddQuestionToTest(int questId, int testId);
+        void AddQuestionToTest(int questId, int testId);
         void ChangeSubject(int testId, string newSubject);
     }
 }

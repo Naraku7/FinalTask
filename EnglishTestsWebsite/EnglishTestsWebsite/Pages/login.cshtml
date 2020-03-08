@@ -1,6 +1,31 @@
-﻿@{ 
+﻿@using Ioc;
+@using Entities;
+@using EnglishTestsWebsite.Models;
+@{
     Page.Title = "Login";
+    var userLogic = DependencyResolver.UserLogic;
+
+    string name = null, pass = null;
+
+    if (IsPost)
+    {
+        name = Request["name"];
+        pass = Request["pass"];
+
+        User user = userLogic.GetUserByNameAndPass(name, pass);
+
+        if (user.Username != null && user.Password != null)
+        {
+            FormsAuthentication.SetAuthCookie(name, createPersistentCookie: true);
+
+            UserInfo.Username = name;
+            UserInfo.Password = pass;
+
+            Response.Redirect("~");
+        }
+    }
 }
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,25 +33,29 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
 </head>
 <body style="width: 30%; margin: auto;">
-    <form class="form-signin">
+    <form class="form-signin" method="post">
         <div class="text-center mb-4">
-            <h1 class="h3 mb-3 font-weight-normal">Welcome!</h1> 
+            <h1 class="h3 mb-3 font-weight-normal">Авторизация!</h1>
         </div>
 
         <div class="form-label-group" style="margin-bottom: 20px">
-            <input type="email" id="inputEmail" class="form-control" placeholder="Имя пользователя" required="" autofocus="">
+            <input type="text" id="inputEmail" class="form-control" name="name" placeholder="Имя пользователя" required autofocus="">
         </div>
 
         <div class="form-label-group" style="margin-bottom: 20px">
-            <input type="password" id="inputPassword" class="form-control" placeholder="Пароль" required="">
+            <input type="password" id="inputPassword" class="form-control" name="pass" placeholder="Пароль" required>
         </div>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-bottom: 20px">Войти</button>
-
-        <label for="reg">Нет аккаунта?</label>
-        <button class="btn btn-lg btn-primary btn-block" id="reg" type="submit">Зарегистрироваться</button>
     </form>
 
+    <label for="reg">Нет аккаунта?</label>
+    <button class="btn btn-lg btn-primary btn-block" id="reg" onclick="reg()">Зарегистрироваться</button>
 
+    <script>
+        function reg() {
+            location.href = '/Pages/Registration.cshtml';
+        }
+    </script>
 </body>
 </html>

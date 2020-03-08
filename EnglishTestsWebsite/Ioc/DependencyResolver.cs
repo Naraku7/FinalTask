@@ -28,25 +28,5 @@ namespace Ioc
         public static IUserLogic UserLogic = _userLogic ?? (_userLogic = new UserLogic(UserDao));
         public static ITestLogic TestLogic = _testLogic ?? (_testLogic = new TestLogic(TestDao));
         public static IQuestionLogic QuestionLogic = _questionLogic ?? (_questionLogic = new QuestionLogic(QuestionDao));
-
-        //static DependencyResolver()
-        //{
-        //    var DAL = ReadSetting("DAL");
-        //}
-
-        //static string ReadSetting(string key)
-        //{
-        //    try
-        //    {
-        //        var appSettings = ConfigurationManager.AppSettings;
-        //        string result = appSettings[key] ?? "Not Found";
-
-        //        return result;
-        //    }
-        //    catch (ConfigurationErrorsException)
-        //    {
-        //        return "Error reading app settings";
-        //    }
-        //}
     }
 }

@@ -14,3 +14,5 @@ E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Ioc\bin\Debug\E
 E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Ioc\obj\Debug\Ioc.csproj.CopyComplete
 E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Ioc\obj\Debug\Ioc.dll
 E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Ioc\obj\Debug\Ioc.pdb
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Ioc\bin\Debug\RoleProvider.dll
+E:\Studying\C# Programms\EnglishTestsWebsite\EnglishTestsWebsite\Ioc\bin\Debug\RoleProvider.pdb

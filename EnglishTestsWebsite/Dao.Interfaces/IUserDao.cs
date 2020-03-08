@@ -14,5 +14,8 @@ namespace Dao.Interfaces
         User GetUserById(int id);
         void RemoveUser(int id);
         void EditUser(int id, string username, string password);
+        void AddScoreOfTest(int userId, int testId, int score);
+        void EditScore(int userId, int testId, int newScore);
+        User GetUserByNameAndPass(string username, string password);
     }
 }

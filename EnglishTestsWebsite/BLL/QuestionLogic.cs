@@ -28,7 +28,7 @@ namespace BLL
             throw new NotImplementedException();
         }
 
-        public void EditQuestion(string text, string correctAnswer)
+        public void EditQuestion(int id, string text, int correctAnswer)
         {
             throw new NotImplementedException();
         }
